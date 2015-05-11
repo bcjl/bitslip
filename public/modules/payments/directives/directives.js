@@ -11,7 +11,9 @@ directives.directive('autocomplete', ['$http', function($http) {
                 var url = '/search_user/?term=' + request.term;
                 $http.get(url).success( function(data) {
                     for(var i=0; i< data.length; i++){
-                        scope.validUsernames.push(data[i].username);
+                        if(data[i]){
+                            scope.validUsernames.push(data[i].username);
+                        }
                     }
                     response(data);
                 });
